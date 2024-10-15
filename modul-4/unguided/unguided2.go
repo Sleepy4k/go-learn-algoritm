@@ -1,37 +1,49 @@
 package main
 
-import "fmt"    
+import "fmt"
 
-func hitungSkor(soal *int, skor int) {
+func hitungSkor(soal, skor *int) {
+    var waktu int
 
+    for i := 0; i < 8; i++ {
+        fmt.Scan(&waktu)
+
+        if waktu <= 300 {
+            *soal++
+            *skor += waktu
+        }
+    }
 }
 
 func main() {
     var nama, pemenang string
-    var a, b, c, d, e, f, g, h int
-    maxSoal := 0
-    minWaktu := 99999
+    var soal, skor int
+
+    soalTertinggi := 0
+    skorTerendah := 8 * 301
 
     for {
-        fmt.Print("Masukkan nama peserta atau 'selesai' untuk berhenti: ")
+        soal = 0
+        skor = 0
+
+        fmt.Print("Masukan data nama dan waktu atau 'selesai' untuk berhenti: ")
         fmt.Scan(&nama)
 
         if nama == "selesai" || nama == "Selesai" || nama == "SELESAI" {
             break
         }
 
-        hitungSkor(nama, &a, &b)
-        fmt.Printf("%s menyelesaikan %d soal dalam %d menit\n", nama, a, b)
-        
-        if a > maxSoal || (a == maxSoal && b < minWaktu) {
-            maxSoal = a
-            minWaktu = b
+        hitungSkor(&soal, &skor)
+
+        if (soal > soalTertinggi || (soal == soalTertinggi && skor < skorTerendah)) {
+            soalTertinggi = soal
+            skorTerendah = skor
             pemenang = nama
         }
     }
 
-    if maxSoal > 0 {
-        fmt.Printf("Pemenangnya adalah %s dengan %d soal diselesaikan dalam %d menit\n", pemenang, maxSoal, minWaktu)
+    if soalTertinggi > 0 {
+        fmt.Printf("%s %d %d\n", pemenang, soalTertinggi, skorTerendah)
     } else {
         fmt.Println("Tidak ada peserta yang menyelesaikan soal.")
     }
