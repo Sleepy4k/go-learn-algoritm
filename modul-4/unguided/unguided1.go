@@ -1,8 +1,6 @@
 package main
 
-import (
-    "fmt"
-)
+import "fmt"
 
 func factorial(n int, hasil *int) {
     *hasil = 1
