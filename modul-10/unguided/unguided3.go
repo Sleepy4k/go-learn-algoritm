@@ -35,17 +35,15 @@ func rerata(arrBerat arrBalita) float64 {
 
 func main() {
 	n := 0
-	var weight float64
-	var balita arrBalita
 
 	fmt.Print("Masukan banyak data berat balita: ")
 	fmt.Scan(&n)
 
+	var balita arrBalita
+
 	for i := 0; i < n; i++ {
 		fmt.Printf("Masukan berat balita ke-%d: ", i+1)
-		fmt.Scan(&weight)
-
-		balita[i] = weight
+		fmt.Scan(&balita[i])
 	}
 
 	var bMin, bMax float64

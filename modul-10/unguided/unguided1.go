@@ -2,23 +2,19 @@ package main
 
 import "fmt"
 
-type data struct {
-	berat float64
-}
-
-func findLowestAndHighest(lowest, highest *float64, n_filled int, kelinci [1000]data) {
+func findLowestAndHighest(lowest, highest *float64, n_filled int, kelinci [1000]float64) {
 	x := 0
 
-	*lowest = kelinci[0].berat
-	*highest = kelinci[0].berat
+	*lowest = kelinci[0]
+	*highest = kelinci[0]
 
 	for x < n_filled {
-		if *lowest > kelinci[x].berat {
-			*lowest = kelinci[x].berat
+		if *lowest > kelinci[x] {
+			*lowest = kelinci[x]
 		}
 
-		if *highest < kelinci[x].berat {
-			*highest = kelinci[x].berat
+		if *highest < kelinci[x] {
+			*highest = kelinci[x]
 		}
 
 		x++
@@ -26,7 +22,6 @@ func findLowestAndHighest(lowest, highest *float64, n_filled int, kelinci [1000]
 }
 
 func main() {
-	var kelinci [1000]data
 	x := 0
 
 	fmt.Print("masukan jumlah anak kelinci: ")
@@ -36,13 +31,11 @@ func main() {
 		x = 1000
 	}
 
+	var kelinci [1000]float64
+
 	for i := 0; i < x; i++ {
-		y := 0.0
-
 		fmt.Printf("masukan berat anak kelinci ke-%d: ", i+1)
-		fmt.Scan(&y)
-
-		kelinci[i] = data{y}
+		fmt.Scan(&kelinci[i])
 	}
 
 	var lowest, highest float64
